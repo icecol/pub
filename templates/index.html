@@ -1,0 +1,11 @@
+$def with (posts)
+
+<h1>Carros disponíveis</h1>
+
+<ul>
+$for post in posts:
+    <li>
+        <a>$post['modelo'] | $post['fabricante'] | $post['ano'] | $post['foto']</a>
+        <i>- edit</i>
+    </li>
+</ul>
