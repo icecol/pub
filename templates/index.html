@@ -1,5 +1,8 @@
-$def with (posts)
-
+$def with (search,posts)
+<h1>Busca Carros</h1>
+<form method="POST">
+    $:search.render()
+</form>
 <h1>Carros disponíveis</h1>
 
 <ul>
