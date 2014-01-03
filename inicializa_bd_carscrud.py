@@ -1,7 +1,8 @@
 #!/usr/bin/python
-# Script de inicialização da base de dados.
-# Limpa e Insere registros de teste na base.
-# 27/12/2013
+
+#Script de inicializcao da base de dados.
+#Limpa e Insere registros de teste na base.
+#27/12/2013
 
 import pymongo
 
