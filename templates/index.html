@@ -1,8 +1,11 @@
 $def with (search,posts)
 <h1>Busca Carros</h1>
-<form method="POST">
+
+<form name="search_form" method="POST">
     $:search.render()
+    $if not search.valid: <p>Voce deve preencher pelo menos um critério para busca.</p>
 </form>
+
 <h1>Carros disponíveis</h1>
 
 <ul>
