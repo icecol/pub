@@ -30,6 +30,19 @@ search = form.Form(
     validators = [form.Validator("Ano incorreto", lambda x: x.Ano < 9999)]
 )
 
+#funcao que busca registros de acordo com filtros do usuario, retorna lista
+def filtra(db,filtros):
+    print(filtros['Fabricante'])
+    busca = db.cars.find({'fabricante':filtros['Fabricante']})
+    r = []
+    for i in busca:
+	r.append(i)
+    # "decodifica" unicode retornado pelo mongodb
+    cars = []
+    for i in r:
+        cars.append(dict([(str(k), str(v)) for k, v in i.items()]))
+    return cars
+
 
 class Index:
     def GET(self):
@@ -57,9 +70,12 @@ class Index:
 	fabricante = search_fields['Fabricante'].value
 	modelo = search_fields['Modelo'].value
 	ano = search_fields['Ano'].value
-	print(fabricante)
-	print(modelo)
-	print(ano)
+	filtros = {'Fabricante':fabricante , 'Modelo':modelo , 'Ano':ano}
+	#conecta ao mongodb local
+        client = pymongo.MongoClient('localhost', 27017)
+        #define a base utilizada
+        db = client.carscrud
+	cars = filtra(db,filtros)
 	return render.index(search_fields,cars)
 
 
