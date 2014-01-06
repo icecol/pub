@@ -32,8 +32,16 @@ search = form.Form(
 
 #funcao que busca registros de acordo com filtros do usuario, retorna lista
 def filtra(db,filtros):
-    print(filtros['Fabricante'])
-    busca = db.cars.find({'fabricante':filtros['Fabricante']})
+    #verifica se foi selecionado algum filtro
+    filtro_values = 0
+    for i in filtros.itervalues():
+	if str(i):
+	    filtro_values += 1
+    #caso não tenha nenhum filtro, retorna lista completa
+    if filtro_values == 0:
+	busca = db.cars.find()
+    else:
+	busca = db.cars.find({'fabricante_lower':filtros['Fabricante'].lower()})
     r = []
     for i in busca:
 	r.append(i)

@@ -24,7 +24,6 @@ Projeto de um simples CRUD de veiculos.
 
 <h3>Todo:</h3>
 - Busca
-> tonar case insensitive
 > identificar e mesclar cirterios de busca
 - Login com sessão
 - Tela de cadastro/alteração de veiculos
